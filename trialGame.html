@@ -1,6 +1,12 @@
 <html>
   <head>
     <script src="p5.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        border: 0;
+      }
+    </style>
   </head>
   <body>
     <script>
@@ -9,16 +15,14 @@
     var ball = new ball();
     var ball2 = new ball2();
     var d;
-    var timer;
+    let timer = 90;
     var counter = 60;
     var seconds;
     var minutes;
     let bg;
       function setup() {
         createCanvas(w,h);
-        timer = createP("timer");
         bg = loadImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1QlzIxaHmRXHeh0RwrNThVl1UOB9GpbkegbxlUeuRK3yCcr4Y');
-        setInterval(timeIt, 1000);
       }
       function draw() {
         background(bg);
@@ -27,6 +31,19 @@
         ball2.show();
         ball2.move();
         ball2.kill();
+        function timeIt() {
+        if (counter > 0) {
+         counter--;
+       }
+      //  minutes = floor(counter/60);
+      //  seconds = counter % 60;
+      //  timer.html = minutes + ":" + seconds;
+      //    if (counter == 0) {
+          noLoop();
+      //    window.alert("Blue Wins");
+      //  }
+      //  }
+      }
       }
       function ball() {
         this.x = 100;
@@ -36,10 +53,11 @@
         this.show = function() {
           fill(color('red'));
           ellipse(this.x, this.y, pH, pW);
+          //image(img, this.x, this.y, 100, 100)
         }
 
       this.move = function(){
-          if ((keyIsDown(68)) && (this.x < w - 68)) { //D
+          if ((keyIsDown(68)) && (this.x < w - 54)) { //D
             this.x += 10;
           }
           if ((keyIsDown(65)) && (this.x > 50)) { //A
@@ -48,14 +66,14 @@
           if ((keyIsDown(87)) && (this.y > 50)) { //W
             this.y -= 10;
           }
-          if ((keyIsDown(83)) && (this.y < h - 63)) { //S
+          if ((keyIsDown(83)) && (this.y < h - 54)) { //S
             this.y += 10;
           }
       }
       }
       
       function ball2() {
-        this.x = 1000;
+        this.x = 1250;
         this.y = 300;
         var pH = 100;
         var pW = 100;
@@ -65,7 +83,7 @@
         }
 
       this.move = function(){
-          if ((keyIsDown(76)) && (this.x < w - 68)) { //L
+          if ((keyIsDown(76)) && (this.x < w - 54)) { //L
              this.x += 10;
           }
           if ((keyIsDown(74)) && (this.x > 50)) { //J
@@ -74,7 +92,7 @@
           if ((keyIsDown(73)) && (this.y > 50)) { //I
             this.y -= 10;
           }
-          if ((keyIsDown(75)) && (this.y < h - 63)) { //K
+          if ((keyIsDown(75)) && (this.y < h - 54)) { //K
             this.y += 10;
           }
           this.kill = function () {
@@ -86,18 +104,7 @@
           }
       }
       }
-      function timeIt() {
-        if (counter > 0) {
-          counter--;
-        }
-        minutes = floor(counter/60);
-        seconds = counter % 60;
-        timer.innerHTML = minutes + ":" + seconds;
-        if (counter == 0) {
-          noLoop();
-          window.alert("Blue Wins");
-        }
-      }
+      
     </script>
   </body>
 </html>
